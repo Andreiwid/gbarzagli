@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "450748639917",
+    "firebase_url": "https://embrapa-share.firebaseio.com",
+    "project_id": "embrapa-share",
+    "storage_bucket": "embrapa-share.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450748639917:android:97ab860560e3e3e9",
+        "android_client_info": {
+          "package_name": "com.it.turtle.embrapashare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450748639917-gall2phrjs74nv482el5fnocviab0eu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.it.turtle.embrapashare",
+            "certificate_hash": "BE797515257161387E73DAFF0D953E2D08B4E847"
+          }
+        },
+        {
+          "client_id": "450748639917-s31dpm7fcjnqm6o9otc620fa4n1mb4k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv-KCoJ9a-ZSug1Q7k1rPQ6I0GhL4jbug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450748639917-s31dpm7fcjnqm6o9otc620fa4n1mb4k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

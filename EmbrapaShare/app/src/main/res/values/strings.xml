@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Embrapa Share</string>
+    <string name="title_activity_culture_picker">CulturePickerActivity</string>
+    <string name="title_activity_add_culture">Adicionar Cultura</string>
+    <string name="title_activity_culture_focus">Cultura</string>
+    <string name="title_activity_cafe">CafeActivity</string>
+</resources>
