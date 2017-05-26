@@ -21,9 +21,9 @@ public class PlantController {
 	FamilyRepository familyRepository;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public void register(@RequestParam String name, @RequestParam Long familyId) {
+	public void register(@RequestParam String name, @RequestParam String familyName) {
 		
-		Family family = familyRepository.findOne(familyId);
+		Family family = familyRepository.findByName(familyName);
 		Plant plant = new Plant(name, family);
 		plantRepository.save(plant);
 		

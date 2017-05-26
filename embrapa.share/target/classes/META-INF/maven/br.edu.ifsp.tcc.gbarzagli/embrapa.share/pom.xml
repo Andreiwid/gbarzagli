@@ -11,9 +11,22 @@
 	<url>https://www.embrapa.br/</url>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<version>2.4</version> <configuration> <archive> <manifest> <mainClass>br.edu.ifsp.tcc.gbarzagli.embrapa.share.Application</mainClass> 
+				</manifest> </archive> </configuration> </plugin -->
+		</plugins>
+	</build>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

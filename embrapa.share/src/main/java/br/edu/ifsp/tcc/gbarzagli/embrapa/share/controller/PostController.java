@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -87,4 +88,13 @@ public class PostController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
+	@RequestMapping(method = RequestMethod.GET)
+	public HttpEntity<List<Post>> getPosts(@RequestParam String username) {
+		
+		List<Post> userPosts = postRepository.findByUsername(username);
+		HttpEntity<List<Post>> response = new ResponseEntity<List<Post>>(userPosts, HttpStatus.OK);
+		return response;
+		
+	}
+	
 }
