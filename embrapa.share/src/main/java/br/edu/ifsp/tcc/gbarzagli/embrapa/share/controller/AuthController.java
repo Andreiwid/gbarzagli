@@ -6,7 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,16 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.ifsp.tcc.gbarzagli.embrapa.share.BeanConfiguration;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Authorization;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Researcher;
+import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Token;
+import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Tokens;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.ResearcherRepository;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthController {
 	
 	@Autowired
 	ResearcherRepository researcherRepository;
+	
+	private static ApplicationContext context; 
+	static {
+		context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+	}
 	
 	/**
 	 * Authenticate the researcher
@@ -32,6 +42,7 @@ public class AuthController {
 	 * @return a authorization to use the system containing the token and an expiration time
 	 */
 	@RequestMapping(
+			value = "/auth",
 			method  = {
 					RequestMethod.POST, 
 					RequestMethod.GET 
@@ -52,13 +63,28 @@ public class AuthController {
 			Date validDate = validThru.getTime();
 			long expiration = today.getTime() + validDate.getTime();
 		
-			// Call to token algorithm 
-			String token = tokenize(researcher.getUsername(), expiration);
+			// Create the token 
+			String key = tokenize(researcher.getUsername(), expiration);
+			Token token = new Token(researcher.getId(), key);
+			Tokens tokens = context.getBean(Tokens.class);
+			tokens.addToken(token);
 			
-			auth = new Authorization(token, expiration);
+			auth = new Authorization(key, expiration);
 		}
 		
 		return auth;
+	}
+	
+	@RequestMapping(
+			value = "/register",
+			method = RequestMethod.POST
+	)
+	public ResponseEntity<Object> register() {
+		ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.CREATED);
+		
+		
+		
+		return response;
 	}
 	
 	private String tokenize(String username, long expiration) throws Exception {
