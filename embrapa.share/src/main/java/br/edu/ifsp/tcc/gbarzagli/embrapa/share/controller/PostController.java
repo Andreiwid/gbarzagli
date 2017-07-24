@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -46,7 +49,7 @@ public class PostController {
 	 * POST endpoint to upload a image to our server
 	 * @param sender email of the producer
 	 * @param plant id of the corresponding plant
-	 * @param image jpeg file of the plant's leaf
+	 * @param images jpeg file of the plant's leaf
 	 * @return HTTP response status: <br>
 	 * <ul>
 	 * <li> 201 Post created </li>
@@ -55,9 +58,10 @@ public class PostController {
 	 * </ul>
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public HttpEntity<Object> upload(@RequestParam String sender, @RequestParam Long plantId, @RequestParam MultipartFile image) {
-		if ((sender != null && !sender.isEmpty()) && (image != null && !image.isEmpty()) && (plantId != null)) {
+	public HttpEntity<Object> upload(@RequestParam String sender, @RequestParam Long plantId, @RequestParam MultipartFile images) {
+		if ((sender != null && !sender.isEmpty()) && (images != null && !images.isEmpty()) && (plantId != null)) {
 			
+			ZipInputStream zip = null;
 			FileOutputStream fos = null;
 			try {
 				String imageName = Constants.PREFIX_IMAGE_NAME + new Date().getTime() + Constants.SUFIX_JPEG_NAME;
@@ -66,9 +70,13 @@ public class PostController {
 					file.createNewFile();
 				}
 				
-				fos = new FileOutputStream(file);
-				fos.write(image.getBytes());
-				fos.flush();
+				zip = new ZipInputStream(images.getInputStream());
+				ZipEntry entry = null;
+				
+				while ((entry = zip.getNextEntry()) != null) {
+					fos = new FileOutputStream(file);
+					IOUtils.copy(zip, fos);
+				}
 				
 				Plant plant = plantRepository.findOne(plantId);
 				
