@@ -8,24 +8,21 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class Application {
-	
-	/** Main method - initiate our spring application */
-    public static void main( String[] args ) {
-        SpringApplication.run(Application.class, args);
-    }
-    
-    
-    @Bean
-    @ConfigurationProperties("app.datasource")
-    public DataSource dataSource() {
-    	return DataSourceBuilder.create()
-    							.url("jdbc:mysql://localhost:3306/embrapa")
-    							.username("root")
-    							.password("")
-    							.driverClassName("com.mysql.jdbc.Driver")
-    							.build();
-    }
-    
+
+    /** Main method - initiate our spring application */
+//    public static void main(String[] args) {
+//        SpringApplication.run(Application.class, args);
+//    }
+//
+//    @Bean
+//    @ConfigurationProperties("app.datasource")
+//    public DataSource dataSource() {
+//        return DataSourceBuilder.create()
+//                .url("jdbc:mysql://localhost:3306/embrapa")
+//                .username("root").password("root")
+//                .driverClassName("com.mysql.jdbc.Driver").build();
+//    }
+
 }

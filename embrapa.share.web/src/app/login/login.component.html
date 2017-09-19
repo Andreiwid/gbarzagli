@@ -4,18 +4,16 @@
         <div class="col s2"></div>
         <div class=" col s8">
             <div class="card small center">
-                <span class="card-title ">Login</span>
+                <span class="card-title indigo-text">Login</span>
                 <div class="container">
                     <div class="input-field">
-                        <input id="email" type="email">
-                        <label for="email">Email</label>
+                        <input placeholder="Username" type="text" [(ngModel)]="username">
                     </div>
                     <div class="input-field">
-                        <input id="password" type="password">
-                        <label for="password">Password</label>
+                        <input placeholder="Password"type="password" [(ngModel)]="password">
                     </div>
                     <div class="input-field">
-                        <button class="left waves-effect waves-light btn indigo">Register</button>
+                        <a class="left waves-effect waves-light btn indigo" [routerLink]="['/register']">Register</a>
                         <button class="right waves-effect waves-light btn indigo">Login</button>
                     </div>
                 </div>

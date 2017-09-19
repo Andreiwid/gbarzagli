@@ -1,0 +1,31 @@
+<div class="container flex-container">
+    <div class="flex-spacing"></div>
+    <div class="row flex-principal">
+        <div class="col s2"></div>
+        <div class=" col s8">
+            <div class="card large center">
+                <span class="card-title indigo-text">Register</span>
+                <div class="container">
+                    <div class="input-field">
+                        <input placeholder="Username" type="text" [(ngModel)]="username">
+                    </div>
+                    <div class="input-field">
+                        <input placeholder="Name" type="text" [(ngModel)]="name">
+                    </div>
+                    <div class="input-field">
+                        <input placeholder="Password"type="password" [(ngModel)]="password">
+                    </div>
+                    <div class="input-field">
+                        <input placeholder="Confirm password..."type="password" [(ngModel)]="confirmPassword">
+                    </div>
+                    <div class="input-field">
+                        <a class="left waves-effect waves-light btn indigo" [routerLink]="['/register']">Cancel</a>
+                        <button class="right waves-effect waves-light btn indigo">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s2"></div>
+    </div>
+    <div class="flex-spacing"></div>
+</div>
