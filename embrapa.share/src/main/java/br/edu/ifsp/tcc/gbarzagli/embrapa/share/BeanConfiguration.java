@@ -11,6 +11,6 @@ public class BeanConfiguration {
 	@Bean
 	public Tokens tokens() {
 		return new Tokens();
-    }
-
+	}
+	
 }

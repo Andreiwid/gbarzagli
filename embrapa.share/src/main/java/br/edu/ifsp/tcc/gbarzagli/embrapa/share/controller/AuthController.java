@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.BeanConfiguration;
@@ -81,7 +79,6 @@ public class AuthController {
 			method = RequestMethod.POST
 	)
 	public ResponseEntity<Object> register(String name, String username, String password, String passwordConfirmation) {
-//		ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.CREATED);
 	    ResponseEntity<Object> response = null;
 	    
 		if (username == null || username.isEmpty()) {
@@ -97,9 +94,15 @@ public class AuthController {
 		    }
 		}
 		
-		Researcher researcher = new Researcher();
-		researcher.setUsername(username);
-		researcher.setPassword(password);
+		if (response == null) {
+    		Researcher researcher = new Researcher();
+    		researcher.setName(name);
+    		researcher.setUsername(username);
+    		researcher.setPassword(password);
+    		
+    		researcherRepository.save(researcher);
+    		response = new ResponseEntity<Object>(HttpStatus.CREATED);
+		}
 		
 		return response;
 	}

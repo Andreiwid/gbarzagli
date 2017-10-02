@@ -1,0 +1,8 @@
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\controller\PlantController.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\model\Post.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\repository\PostRepository.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\repository\PlantRepository.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\controller\PostController.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\Constants.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\Application.class
+br\edu\ifsp\tcc\gbarzagli\embrapa\share\model\Plant.class
