@@ -48,9 +48,7 @@ public class AuthController {
 					RequestMethod.GET 
 			}
 	)
-	@ResponseStatus(value = HttpStatus.OK)
-	@ResponseBody
-	public Authorization authenticate(@RequestParam String username, @RequestParam String password) throws Exception {
+	public ResponseEntity<Authorization> authenticate(@RequestParam String username, @RequestParam String password) throws Exception {
 		Authorization auth = null;
 		
 		Researcher researcher = researcherRepository.findByUsername(username);
@@ -72,17 +70,36 @@ public class AuthController {
 			auth = new Authorization(key, expiration);
 		}
 		
-		return auth;
+		HttpStatus status = auth != null ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+		ResponseEntity<Authorization> response = new ResponseEntity<Authorization>(auth, status);
+		
+		return response;
 	}
 	
 	@RequestMapping(
 			value = "/register",
 			method = RequestMethod.POST
 	)
-	public ResponseEntity<Object> register() {
-		ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<Object> register(String name, String username, String password, String passwordConfirmation) {
+//		ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.CREATED);
+	    ResponseEntity<Object> response = null;
+	    
+		if (username == null || username.isEmpty()) {
+		    response = new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		}
 		
+		if (password == null || password.trim().isEmpty() || 
+		        passwordConfirmation == null || passwordConfirmation.trim().isEmpty()) {
+		    response = new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		} else {
+		    if (!password.equals(passwordConfirmation)) {
+		        response = new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		    }
+		}
 		
+		Researcher researcher = new Researcher();
+		researcher.setUsername(username);
+		researcher.setPassword(password);
 		
 		return response;
 	}

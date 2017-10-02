@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
     display: flex;
@@ -8,8 +9,6 @@ body {
 
 app-root {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
     flex: 1 1 100%;
 }
-
