@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class Embrapa.Share.WebPage {
+export class EmbrapaShareWebPage {
   navigateTo() {
     return browser.get('/');
   }

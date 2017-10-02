@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Post;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-	@Query("SELECT p FROM Post p WHERE p.sender = :name")
-	public List<Post> findByUsername(@Param("name") String name);
+    @Query("SELECT p FROM Post p WHERE p.sender = :name")
+    public List<Post> findBySender(@Param("name") String name);
 }

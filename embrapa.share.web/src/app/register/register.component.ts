@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+    @Input() username: string;
+    @Input() name: string;
+    @Input() password: string;
+    @Input() confirmPassword: string;
 
-  ngOnInit() {
-  }
+    constructor() { }
 
+    ngOnInit() {
+    }
+
+    onConfirm() {
+        if (this.password === this.confirmPassword) {
+
+        }
+    }
 }

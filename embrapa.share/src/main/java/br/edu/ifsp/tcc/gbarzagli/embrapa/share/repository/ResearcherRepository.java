@@ -7,8 +7,6 @@ import org.springframework.data.repository.query.Param;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Researcher;
 
 public interface ResearcherRepository extends JpaRepository<Researcher, Long> {
-
-	@Query("SELECT r FROM Researcher r WHERE r.username = :username")
-	public Researcher findByUsername(@Param("username") String username);
-	
+    @Query("SELECT r FROM Researcher r WHERE r.username = :username")
+    public Researcher findByUsername(@Param("username") String username);
 }
