@@ -28,10 +28,10 @@ public class Application extends SpringBootServletInitializer {
     @ConfigurationProperties("app.datasource")
     public DataSource dataSource() {
     	return DataSourceBuilder.create()
-    							.url("jdbc:mysql://localhost:3306/embrapa")
-    							.username("root")
-    							.password("")
-    							.driverClassName("com.mysql.jdbc.Driver")
+    							.url("jdbc:postgresql://localhost:5432/digipathos")
+    							.username("postgres")
+    							.password("root")
+    							.driverClassName("org.postgresql.Driver")
     							.build();
     }
     

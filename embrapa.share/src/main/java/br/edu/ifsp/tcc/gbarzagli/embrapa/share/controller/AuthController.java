@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Token;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Tokens;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.ResearcherRepository;
 
-@RestController
+@Controller
 public class AuthController {
 	
 	@Autowired
@@ -32,6 +33,12 @@ public class AuthController {
 	static {
 		context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 	}
+	
+	@RequestMapping("/")
+	public String index() {
+        return "login";
+	}
+	
 	
 	/**
 	 * Authenticate the researcher
