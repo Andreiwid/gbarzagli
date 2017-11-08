@@ -6,7 +6,7 @@
 	<title>Embrapa Share</title>
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/signup.css" />
 	<link rel="stylesheet" href="css/colors.css" />
 </head>
 <body>
@@ -18,18 +18,24 @@
 				</div>
 				<form method="post" class="container">
 					<div class="row form-group">
+						<input type="text" class="form-control" id="text" placeholder="Nome"/>
+					</div>
+					<div class="row form-group">
 						<input type="email" class="form-control" id="email" placeholder="E-mail"/>
 					</div>
 					<div class="row form-group">
 						<input type="password" class="form-control" id="password" placeholder="Password"/>
 					</div>
 					<div class="row form-group">
+						<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password"/>
+					</div>
+					<div class="row form-group">
 						<div class="col d-flex align-right btn-col">
-							<button class="btn btn-success btn-sm bg-pastel-green-darker btn-borderless" onclick="login()">Log In</button>
+							<button class="btn btn-success btn-sm bg-pastel-green-darker btn-borderless" onclick="register()">Sign up</button>
 						</div>
 						<div class="btn-separator"></div>
 						<div class="col d-flex align-left btn-col">
-							<button class="btn btn-secondary btn-sm bg-pastel-grey-darker tx-black btn-borderless" onclick="signup()">Sign up</button>
+							<button class="btn btn-secondary btn-sm bg-pastel-grey-darker tx-black btn-borderless" onclick="cancel()">Cancel</button>
 						</div>
 					</div>
 				</form>
@@ -45,6 +51,6 @@
 	<script src="js/jquery-3.2.1.slim.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/signup.js"></script>
 </body>
 </html>

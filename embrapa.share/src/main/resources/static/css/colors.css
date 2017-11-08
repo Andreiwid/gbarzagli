@@ -1,0 +1,25 @@
+/* BACKGROUND COLORS */
+
+.bg-pastel-green {
+	background-color: #77dd77;
+}
+
+.bg-pastel-green-darker {
+	background-color: #48d148;
+}
+
+.bg-pastel-grey {
+	background-color: #cfcfc4;
+}
+
+.bg-pastel-grey-darker {
+	background-color: #bdbdae;
+}
+
+
+
+/* TEXT COLORS */
+
+.tx-black {
+	color: black;
+}

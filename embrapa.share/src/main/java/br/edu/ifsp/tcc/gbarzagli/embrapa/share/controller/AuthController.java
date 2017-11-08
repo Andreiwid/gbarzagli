@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.BeanConfiguration;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Authorization;
@@ -37,6 +36,11 @@ public class AuthController {
 	@RequestMapping("/")
 	public String index() {
         return "login";
+	}
+	
+	@RequestMapping("/signup")
+	public String signup() {
+	    return "signup";
 	}
 	
 	

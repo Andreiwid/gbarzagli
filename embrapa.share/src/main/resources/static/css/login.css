@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Secular+One');
+
+body {
+	background-image: url("/img/field-background.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+	width: 100vw;
+	max-width: 100vw;
+	max-height: 100vh;
+}
+
+.panel {
+	background-color: rgba(255, 255, 255, 0.7);
+	height: 100%;
+	width: 100%;
+}
+
+.full-height {
+	height: 100%;
+}
+
+@media(max-width: 992px) {
+	.hide-on-md-and-down {
+		display: none;
+	}
+}
+
+.btn-col {
+	padding: 0px; 
+}
+
+.align-left {
+	justify-content: flex-start;
+}
+
+.align-right {
+	justify-content: flex-end;
+}
+
+.btn-separator {
+	width: 0.5em;
+}
+
+.btn-borderless {
+	border: 0;
+}
+
+.image-copyright {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: white;
+	text-align: right;
+}
+
+.embrapa-logo {
+	position: relative;
+	background-image: url("/img/embrapa-logo.svg");
+	background-size: 200px 120px;
+	font-family: 'Secular One', sans-serif;
+	width: 200px;
+	height: 120px;
+}
+
+.share-text {
+	bottom: 25px;
+	left: 65px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	float:left;
+}
+
+.title {
+	font-family: 'Secular One', sans-serif;
+}
+
+.white-text {
+	color: white;
+}
