@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -41,7 +42,7 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PostRepository;
  */
 @RestController
 @RequestMapping("/post")
-public class PostController {
+public class PostRestController {
 
     @Autowired
     PostRepository postRepository;
@@ -69,13 +70,14 @@ public class PostController {
      *         </ul>
      */
     @RequestMapping(method = RequestMethod.POST)
-    public HttpEntity<Object> upload(@RequestParam String sender, @RequestParam Long plantId, @RequestParam MultipartFile images) {
-        if ((sender != null && !sender.isEmpty()) && (images != null && !images.isEmpty()) && (plantId != null)) {
+    public HttpEntity<Object> upload(@RequestParam String sender, @RequestParam Long plantId, @RequestParam MultipartFile files) {
+        if ((sender != null && !sender.isEmpty()) && (files != null && !files.isEmpty()) && (plantId != null)) {
             ZipInputStream zip = null;
             FileOutputStream fos = null;
 
             try {
-                zip = new ZipInputStream(images.getInputStream());
+                List<Image> images = null;
+                zip = new ZipInputStream(files.getInputStream());
                 ZipEntry entry = zip.getNextEntry();
                 while (entry != null) {
                     String imageName = Constants.PREFIX_IMAGE_NAME + new Date().getTime() + Constants.SUFIX_JPEG_NAME;
@@ -89,10 +91,18 @@ public class PostController {
                     fos.flush();
                     fos.close();
                     entry = zip.getNextEntry();
+                    
+                    Image image = new Image();
+                    image.setPath(file.getAbsolutePath());
+                    
+                    if (images == null) {
+                        images = new ArrayList<>();
+                    }
+                    images.add(image);
                 }
 
                 Plant plant = plantRepository.findOne(plantId);
-                Post post = new Post(sender, plant);
+                Post post = new Post(sender, plant, images);
                 postRepository.save(post);
             } catch (IOException e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

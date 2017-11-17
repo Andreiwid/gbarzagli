@@ -35,7 +35,7 @@ public class AuthController {
 	
 	@RequestMapping("/")
 	public String index() {
-        return "login";
+        return "home";
 	}
 	
 	@RequestMapping("/signup")

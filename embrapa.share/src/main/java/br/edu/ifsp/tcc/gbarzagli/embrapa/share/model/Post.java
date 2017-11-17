@@ -3,6 +3,7 @@ package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String sender;
 
     @ManyToOne
@@ -35,9 +37,10 @@ public class Post {
     protected Post() {
     }
 
-    public Post(String sender, Plant plant) {
+    public Post(String sender, Plant plant, List<Image> images) {
         this.sender = sender;
         this.plant = plant;
+        this.images = images;
     }
 
     public Long getId() {

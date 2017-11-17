@@ -1,9 +1,11 @@
 package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -19,9 +21,11 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String path;
 
     @ManyToOne
+    @JoinColumn(name = "fk_post", referencedColumnName = "id")
     private Post post;
 
     public Long getId() {
