@@ -2,9 +2,6 @@ package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -15,11 +12,7 @@ import javax.persistence.ManyToOne;
  *
  */
 @Entity
-public class Image {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Image extends PersistedObject {
 
     @Column
     private String path;
@@ -27,14 +20,6 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "fk_post", referencedColumnName = "id")
     private Post post;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPath() {
         return path;
@@ -52,4 +37,10 @@ public class Image {
         this.post = post;
     }
 
+    @Override
+    public String toString() {
+        return "Image [path=" + path + ", post=" + post + "]";
+    }
+
+    
 }

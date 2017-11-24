@@ -2,9 +2,6 @@ package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Representation of a plant
@@ -12,19 +9,22 @@ import javax.persistence.Id;
  * @author <a href="mailTo:gabriel.barzagli@hotmail.com"> Gabriel Viseli Barzagli (gabriel.barzagli@hotmail.com) </a>
  */
 @Entity
-public class Plant {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Plant extends PersistedObject {
 
     @Column(nullable = false)
     private String name;
 
-    protected Plant() {
-    }
+    public Plant() {}
 
     public Plant(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -76,6 +76,7 @@ public class PostRestController {
             FileOutputStream fos = null;
 
             try {
+                Post post = new Post();
                 List<Image> images = null;
                 zip = new ZipInputStream(files.getInputStream());
                 ZipEntry entry = zip.getNextEntry();
@@ -93,6 +94,7 @@ public class PostRestController {
                     entry = zip.getNextEntry();
                     
                     Image image = new Image();
+                    image.setPost(post);
                     image.setPath(file.getAbsolutePath());
                     
                     if (images == null) {
@@ -102,7 +104,9 @@ public class PostRestController {
                 }
 
                 Plant plant = plantRepository.findOne(plantId);
-                Post post = new Post(sender, plant, images);
+                post.setSender(sender);
+                post.setPlant(plant);
+                post.setImages(images);
                 postRepository.save(post);
             } catch (IOException e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -2,16 +2,11 @@ package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Researcher {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Researcher extends PersistedObject {
 
     @Column(nullable = false)
     private String name;
@@ -21,23 +16,17 @@ public class Researcher {
 
     @Column(nullable = false)
     private String password;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_reliable", referencedColumnName = "id")
+    private Reliability reliability;
 
-    public Researcher() {
-    }
+    public Researcher() {}
 
     public Researcher(String name, String username, String password) {
-        super();
         this.name = name;
         this.username = username;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -63,5 +52,20 @@ public class Researcher {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public Reliability getReliability() {
+        return reliability;
+    }
+    
+    public void setReliability(Reliability reliability) {
+        this.reliability = reliability;
+    }
+
+    @Override
+    public String toString() {
+        return "Researcher [name=" + name + ", username=" + username + ", password=" + password + ", reliability=" + reliability + "]";
+    }
+    
+    
 
 }
