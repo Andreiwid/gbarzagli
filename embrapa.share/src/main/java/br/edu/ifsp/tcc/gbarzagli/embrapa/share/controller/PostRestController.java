@@ -41,8 +41,7 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PostRepository;
  *
  */
 @RestController
-@RequestMapping("/post")
-public class PostRestController {
+public class PostRestController extends APIRestController {
 
     @Autowired
     PostRepository postRepository;
@@ -69,7 +68,7 @@ public class PostRestController {
      *         <li>500 Server internal error</li>
      *         </ul>
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "post", method = RequestMethod.POST)
     public HttpEntity<Object> upload(@RequestParam String sender, @RequestParam Long plantId, @RequestParam MultipartFile files) {
         if ((sender != null && !sender.isEmpty()) && (files != null && !files.isEmpty()) && (plantId != null)) {
             ZipInputStream zip = null;
@@ -81,7 +80,15 @@ public class PostRestController {
                 zip = new ZipInputStream(files.getInputStream());
                 ZipEntry entry = zip.getNextEntry();
                 while (entry != null) {
-                    String imageName = Constants.PREFIX_IMAGE_NAME + new Date().getTime() + Constants.SUFIX_JPEG_NAME;
+                    File dir = new File(Constants.IMAGES_DIRECTORY);
+                    if (!dir.exists()) {
+                        dir.mkdir();
+                    }
+                    
+                    String imageName = Constants.IMAGES_DIRECTORY + "/" 
+                                    + Constants.PREFIX_IMAGE_NAME 
+                                    + new Date().getTime() 
+                                    + Constants.SUFIX_JPEG_NAME;
                     File file = new File(imageName);
                     if (!file.exists()) {
                         file.createNewFile();
@@ -175,37 +182,6 @@ public class PostRestController {
         return response;
     }
 
-    /**
-     * GET endpoint to return a single image
-     * @param id image's id
-     * @return a image in jpeg format
-     */
-    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET, produces = " image/jpeg")
-    @ResponseStatus(value = HttpStatus.OK)
-    @ResponseBody
-    public byte[] getPostImage(@PathVariable("id") Long id) {
-        byte[] response = null;
-        try {
-            Image image = imageRepository.findOne(id);
-            
-            File file = new File(image.getPath());
-            ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-            ZipOutputStream zipOutputStream = new ZipOutputStream(byteStream);
-            FileInputStream fileInputStream = new FileInputStream(file);
-            
-            zipOutputStream.putNextEntry(new ZipEntry(file.getName()));
-            IOUtils.copy(fileInputStream, zipOutputStream);
-            
-            fileInputStream.close();
-            zipOutputStream.closeEntry();
-            
-            response = byteStream.toByteArray();
-            zipOutputStream.close();
-            byteStream.close();
-        } catch (IOException e) {
-        }
-        
-        return response;
-    }
+    
 
 }

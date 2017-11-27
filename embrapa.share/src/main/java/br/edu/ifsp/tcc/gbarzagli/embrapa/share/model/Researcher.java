@@ -1,9 +1,14 @@
 package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Researcher extends PersistedObject {
@@ -16,6 +21,9 @@ public class Researcher extends PersistedObject {
 
     @Column(nullable = false)
     private String password;
+    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "researcher", cascade = CascadeType.ALL)
+    private List<Diagnostic> diagnostics;
     
     @ManyToOne
     @JoinColumn(name = "fk_reliable", referencedColumnName = "id")
@@ -60,12 +68,20 @@ public class Researcher extends PersistedObject {
     public void setReliability(Reliability reliability) {
         this.reliability = reliability;
     }
+    
+    
+
+    public List<Diagnostic> getDiagnostics() {
+        return diagnostics;
+    }
+
+    public void setDiagnostics(List<Diagnostic> diagnostics) {
+        this.diagnostics = diagnostics;
+    }
 
     @Override
     public String toString() {
-        return "Researcher [name=" + name + ", username=" + username + ", password=" + password + ", reliability=" + reliability + "]";
+        return "Researcher [name=" + name + ", username=" + username + ", password=" + password + ", diagnostics=" + diagnostics + ", reliability=" + reliability + "]";
     }
-    
-    
 
 }

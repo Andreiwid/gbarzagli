@@ -3,53 +3,120 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Embrapa Share</title>
 
-    <!-- 	<link rel="stylesheet" href="css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="css/materialize.min.css" />
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" />
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="../static/css/colors.css" th:href="@{/css/colors.css}" />
 </head>
 
-<body>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul class="right hide-on-med-and-down">
-                    <li>
-                        <a href="sass.html">
-                            <i class="material-icons">search</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="badges.html">
-                            <i class="material-icons">view_module</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="collapsible.html">
-                            <i class="material-icons">refresh</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mobile.html">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container"></div>
+<body class="grey lighten-4">
+    <header>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper green darken-3">
+                    <a href="" class="brand-logo">
+                        <i class="material-icons">nature_people</i>Embrapa Share</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="/logout">
+                                <i class="material-icons">exit_to_app</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <script src="js/jquery.min.js"></script>
-    <!-- 	<script src="js/popper.min.js"></script> -->
-    <!-- 	<script src="js/bootstrap.min.js"></script> -->
-    <script src="js/materialize.min.js"></script>
-    <script src="js/home.js"></script>
+    <main>
+        <div class="card-panel user-info">
+            <ul class="">
+                <li>
+                    <strong>Usuário:</strong> <span th:text="${form.user.name}">Gabriel Viseli Barzagli</span>
+                </li>
+                <li>
+                    <strong>Quantidade de diagnósticos:</strong> <span th:text="${form.user.diagnostics}">10</span>
+                </li>
+                <li>
+                    <strong>Pontuação (v/d):</strong> <span th:text="${form.user.score}">5.5</span>
+                </li>
+                <li>&nbsp;</li>
+                <li>
+                    <strong>Confiabilidade:</strong> 
+                    <div class="chip">
+                        <span>Neutro</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="row" th:each="post : ${form.posts}">
+            <div class="col s12 m3"></div>
+            <div class="col s12 m6">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light activator">
+							<div class="carousel carousel-slider center">
+								<div class="carousel-item" th:each="image : ${post.images}">
+									<img class="responsive-img activator" src="../static/img/leaf-rust.png" th:src="@{${'/image/' + image.id}}"/>
+								</div>
+							</div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">
+                                <span th:text="${post.plant.name}">Planta</span>
+                                <i class="right material-icons">more_vert</i>
+                            </span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Diagnósticos
+                                <i class="material-icons right">close</i>
+                            </span>
+                            <div class="section scrollable">
+                                <ul class="collection">
+                                    <li class="collection-item avatar" th:each="diagnostic : ${post.diagnostics}">
+                                        <i class="material-icons circle green darken-3">person</i>
+                                        <span class="title">
+                                            <strong th:text="${diagnostic.researcher.name}">Gabriel Viseli Barzagli</strong>
+                                            <div class="chip">
+                                                Neutro
+                                            </div>
+                                        </span>
+                                        <p th:text="${diagnostic.description}">Texto padrao.</p>
+                                        <a href="" class="secondary-content">
+                                            <i class="material-icons indigo-text">done</i>
+                                            <span class="new badge indigo" data-badge-caption="votos" th:text="${diagnostic.score}">0</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="section diagnostic">
+                                <div class="divider"></div>
+                                <div class="section">
+                                    <div class="input-field">
+                                        <textarea id="textarea1" class="materialize-textarea" data-length="255" maxlength="255"></textarea>
+                                        <label for="textarea1">Diagnóstico</label>
+
+                                    </div>
+                                    <div class="input-field">
+                                        <a class="right indigo waves-effect waves-light btn">Enviar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3"></div>
+        </div>
+    </main>
+
+    <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/materialize.min.js" th:src="@{/js/materialize.min.js}"></script>
+    <script src="../static/js/home.js" th:src="@{/js/home.js}"></script>
 </body>
 
 </html>

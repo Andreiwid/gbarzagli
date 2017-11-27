@@ -1,7 +1,7 @@
 function register() {
-	document.forms[0].action = "/register";
+	document.forms[0].action = "/signup";
 }
 
 function cancel() {
-	document.forms[0].action = "/";
+	window.location.href = "/login";
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,8 +25,11 @@ public class Post extends PersistedObject {
     @JoinColumn(name = "fk_plant", referencedColumnName = "id")
     private Plant plant;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.ALL)
     private List<Image> images;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Diagnostic> diagnostics;
 
     public Post() {}
 
@@ -58,10 +62,22 @@ public class Post extends PersistedObject {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+    
+    
+
+    public List<Diagnostic> getDiagnostics() {
+        return diagnostics;
+    }
+
+    public void setDiagnostics(List<Diagnostic> diagnostics) {
+        this.diagnostics = diagnostics;
+    }
 
     @Override
     public String toString() {
-        return "Post [sender=" + sender + ", plant=" + plant.toString() + ", images=" + images + "]";
+        return "Post [sender=" + sender + ", plant=" + plant + ", images=" + images + ", diagnostics=" + diagnostics + "]";
     }
+
+
 
 }

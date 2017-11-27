@@ -1,7 +1,12 @@
 package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 /**
  * Representation of a plant
@@ -13,6 +18,9 @@ public class Plant extends PersistedObject {
 
     @Column(nullable = false)
     private String name;
+    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "plant", cascade = CascadeType.ALL)
+    private List<Post> post;
 
     public Plant() {}
 
@@ -28,9 +36,19 @@ public class Plant extends PersistedObject {
         this.name = name;
     }
 
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
     @Override
     public String toString() {
-        return "Plant [id=" + id + ", name=" + name + "]";
+        return "Plant [name=" + name + ", post=" + post + "]";
     }
+
+
 
 }

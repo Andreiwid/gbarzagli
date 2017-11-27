@@ -23,6 +23,10 @@ public class Diagnostic extends PersistedObject {
     @JoinColumn(name = "fk_post", referencedColumnName = "id")
     private Post post;
     
+    @ManyToOne
+    @JoinColumn(name = "fk_researcher", referencedColumnName = "id")
+    private Researcher researcher;
+    
     public Diagnostic() {}
 
     public String getDescription() {
@@ -57,10 +61,19 @@ public class Diagnostic extends PersistedObject {
         this.post = post;
     }
 
+    public Researcher getResearcher() {
+        return researcher;
+    }
+
+    public void setResearcher(Researcher researcher) {
+        this.researcher = researcher;
+    }
+
     @Override
     public String toString() {
-        return "Diagnostic [description=" + description + ", date=" + date + ", score=" + score + ", post=" + post + "]";
+        return "Diagnostic [description=" + description + ", date=" + date + ", score=" + score + ", post=" + post + ", researcher=" + researcher + "]";
     }
+
     
     
 }

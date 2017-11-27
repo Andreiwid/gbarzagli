@@ -3,5 +3,5 @@ function login() {
 }
 
 function signup() {
-	document.forms[0].action = "/signup";
+	window.location.href = "/signup";
 }

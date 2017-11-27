@@ -2,55 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title>Embrapa Share</title>
 	
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/signup.css" />
-	<link rel="stylesheet" href="css/colors.css" />
+	<link rel="stylesheet" href="../static/css/materialize.min.css" th:href="@{/css/materialize.min.css}" />
+    <link rel="stylesheet" href="../static/css/signup.css" th:href="@{/css/signup.css}" />
+    <link rel="stylesheet" href="../static/css/colors.css" th:href="@{/css/colors.css}" />
 </head>
 <body>
-	<div class="container-fluid full-height">
-		<div class="row full-height">
-			<div class="col-12 col-lg-3 panel d-flex justify-content-center align-items-center card">
-				<div class="embrapa-logo">
-					<div class="share-text">Share</div>
-				</div>
-				<form method="post" class="container">
-					<div class="row form-group">
-						<input type="text" class="form-control" id="text" placeholder="Nome"/>
-					</div>
-					<div class="row form-group">
-						<input type="email" class="form-control" id="email" placeholder="E-mail"/>
-					</div>
-					<div class="row form-group">
-						<input type="password" class="form-control" id="password" placeholder="Password"/>
-					</div>
-					<div class="row form-group">
-						<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password"/>
-					</div>
-					<div class="row form-group">
-						<div class="col d-flex align-right btn-col">
-							<button class="btn btn-success btn-sm bg-pastel-green-darker btn-borderless" onclick="register()">Sign up</button>
-						</div>
-						<div class="btn-separator"></div>
-						<div class="col d-flex align-left btn-col">
-							<button class="btn btn-secondary btn-sm bg-pastel-grey-darker tx-black btn-borderless" onclick="cancel()">Cancel</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-lg-9 hide-on-md-and-down full-height">
-				<div class="image-copyright">
-					Imagem por: <a href="https://pixabay.com/pt/paisagem-espaçoso-campo-prado-2211587/">Pixabay</a>
-				</div>
-			</div>
-		</div>
+
+    <div class="container-fluid full-height">
+       <div class="row full-height">
+           <div class="col s12 m3 panel">
+               <div class="embrapa-logo">
+                   <div class="share-text">Share</div>
+               </div>
+               <form action="#" method="post" th:action="@{/signup}" th:object="${form}" class="container">
+                   <div class="row input-field">
+                       <input id="name" type="text" class="validate" th:field="*{name}" />
+                       <label for="name">Name</label>
+                   </div>
+                   <div class="row input-field">
+                       <input id="email" type="email" class="validate" th:field="*{username}" />
+                       <label for="email">Email</label>
+                   </div>
+                   <div class="row input-field">
+                       <input id="password" type="password" class="validate" th:field="*{password}" />
+                       <label for="password">Password</label>
+                   </div>
+                   <div class="row input-field">
+                       <input id="confirmpw" type="password" class="validate" th:field="*{confirmation}" />
+                       <label for="confirmpw">Confirm password</label>
+                   </div>
+                   <div class="row input-field">
+                       <input type="hidden" id="message" th:value="${message}" value="Your username or password is not correct." />
+                       <button class="waves-effect waves-light btn green darken-3 left">Confirm</button>
+                       <button type="button" class="waves-effect waves-dark btn grey lighten-1 black-text right" onclick="cancel()">Cancel</button>
+                   </div>
+               </form>
+           </div>
+           <div class="col m9 hide-on-md-and-down">
+               <div class="image-copyright">
+                   Imagem por: <a href="https://pixabay.com/pt/paisagem-espaçoso-campo-prado-2211587/">Pixabay</a>
+               </div>
+           </div>
+        </div>
+    </div>
 		
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/signup.js"></script>
+	<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/materialize.min.js" th:src="@{/js/materialize.min.js}"></script>
+    <script src="../static/js/signup.js" th:src="@{/js/signup.js}"></script>
+	<script src="../static/js/messageviewer.js" th:src="@{/js/messageviewer.js}"></script>
 </body>
 </html>
