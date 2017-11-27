@@ -17,7 +17,7 @@ public class Diagnostic extends PersistedObject {
     private Date date;
     
     @Column
-    private int score;
+    private int score = 0;
     
     @ManyToOne
     @JoinColumn(name = "fk_post", referencedColumnName = "id")

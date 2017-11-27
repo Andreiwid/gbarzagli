@@ -1,5 +1,7 @@
 package br.edu.ifsp.tcc.gbarzagli.embrapa.share.model;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -66,6 +68,23 @@ public class Post extends PersistedObject {
     
 
     public List<Diagnostic> getDiagnostics() {
+        if (diagnostics != null) {
+            Collections.sort(diagnostics, new Comparator<Diagnostic>() {
+                @Override
+                public int compare(Diagnostic o1, Diagnostic o2) {
+                    if (o1.getScore() == o2.getScore()) {
+                        return 0;
+                    } else {
+                        if (o1.getScore() < o2.getScore()) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                    }
+                }
+            });
+        }
+        
         return diagnostics;
     }
 
@@ -75,7 +94,7 @@ public class Post extends PersistedObject {
 
     @Override
     public String toString() {
-        return "Post [sender=" + sender + ", plant=" + plant + ", images=" + images + ", diagnostics=" + diagnostics + "]";
+        return "Post [sender=" + sender + ", plant=" + plant + "]";
     }
 
 

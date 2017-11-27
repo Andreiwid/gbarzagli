@@ -30,19 +30,9 @@ main {
     overflow-y: auto;
 }
 
-/* 
-
-.card-title {
-    padding: 5px !important;
-} */
-
 .commentaries {
     background-color: #f0f0f0;
 }
-
-/* .card-content {
-    padding: 10px !important;
-} */
 
 .reset {
     margin: 0 !important;

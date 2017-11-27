@@ -20,7 +20,7 @@ public class Plant extends PersistedObject {
     private String name;
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "plant", cascade = CascadeType.ALL)
-    private List<Post> post;
+    private List<Post> posts;
 
     public Plant() {}
 
@@ -36,17 +36,17 @@ public class Plant extends PersistedObject {
         this.name = name;
     }
 
-    public List<Post> getPost() {
-        return post;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(List<Post> post) {
-        this.post = post;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
     public String toString() {
-        return "Plant [name=" + name + ", post=" + post + "]";
+        return "Plant [name=" + name + "]";
     }
 
 

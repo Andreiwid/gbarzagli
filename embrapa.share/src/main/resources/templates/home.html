@@ -36,19 +36,19 @@
         <div class="card-panel user-info">
             <ul class="">
                 <li>
-                    <strong>Usuário:</strong> <span th:text="${form.user.name}">Gabriel Viseli Barzagli</span>
+                    <strong>User:</strong> <span th:text="${form.user.name}">Gabriel Viseli Barzagli</span>
                 </li>
                 <li>
-                    <strong>Quantidade de diagnósticos:</strong> <span th:text="${form.user.diagnostics}">10</span>
+                    <strong>Total diagnostics:</strong> <span th:text="${form.user.diagnostics}">10</span>
                 </li>
                 <li>
-                    <strong>Pontuação (v/d):</strong> <span th:text="${form.user.score}">5.5</span>
+                    <strong>Score (v/d):</strong> <span th:text="${form.user.score}">5.5</span>
                 </li>
                 <li>&nbsp;</li>
                 <li>
-                    <strong>Confiabilidade:</strong> 
+                    <strong>Reliability:</strong> 
                     <div class="chip">
-                        <span>Neutro</span>
+                        <span>Neutral</span>
                     </div>
                 </li>
             </ul>
@@ -67,43 +67,47 @@
                         </div>
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4">
-                                <span th:text="${post.plant.name}">Planta</span>
+                                <span th:text="${post.plant.name}">Plant</span>
                                 <i class="right material-icons">more_vert</i>
                             </span>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Diagnósticos
+                            <span class="card-title grey-text text-darken-4">
+								Diagnostics - <span th:text="${post.id}"></span>
                                 <i class="material-icons right">close</i>
                             </span>
-                            <div class="section scrollable">
-                                <ul class="collection">
+                            <div class="section">
+                                <ul class="collection scrollable">
                                     <li class="collection-item avatar" th:each="diagnostic : ${post.diagnostics}">
                                         <i class="material-icons circle green darken-3">person</i>
                                         <span class="title">
                                             <strong th:text="${diagnostic.researcher.name}">Gabriel Viseli Barzagli</strong>
                                             <div class="chip">
-                                                Neutro
+                                                Neutral
                                             </div>
                                         </span>
-                                        <p th:text="${diagnostic.description}">Texto padrao.</p>
-                                        <a href="" class="secondary-content">
+                                        <p th:text="${diagnostic.description}">Text prototype.</p>
+                                        <a href="" th:href="@{${'/vote/' + diagnostic.id}}" class="secondary-content">
                                             <i class="material-icons indigo-text">done</i>
                                             <span class="new badge indigo" data-badge-caption="votos" th:text="${diagnostic.score}">0</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="section diagnostic">
+                            <div class="section">
                                 <div class="divider"></div>
                                 <div class="section">
-                                    <div class="input-field">
-                                        <textarea id="textarea1" class="materialize-textarea" data-length="255" maxlength="255"></textarea>
-                                        <label for="textarea1">Diagnóstico</label>
-
-                                    </div>
-                                    <div class="input-field">
-                                        <a class="right indigo waves-effect waves-light btn">Enviar</a>
-                                    </div>
+                                	<form action="#" method="post" th:action="@{/home}" th:object="${dform}">
+	                                    <div class="input-field">
+	                                    	<input type="hidden" th:value="${post.id}" name="postId" value="1" />
+	                                        <textarea id="diagnostic" class="materialize-textarea" data-length="255" maxlength="255" th:field="*{description}">
+	                                        </textarea>
+	                                        <label for="diagnostic">Diagnostic</label>
+	                                    </div>
+	                                    <div class="input-field">
+	                                        <button class="right indigo waves-effect waves-light btn">Send</button>
+	                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ public class Researcher extends PersistedObject {
     @Column(nullable = false)
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "researcher", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "researcher", cascade = CascadeType.ALL)
     private List<Diagnostic> diagnostics;
     
     @ManyToOne
@@ -81,7 +81,7 @@ public class Researcher extends PersistedObject {
 
     @Override
     public String toString() {
-        return "Researcher [name=" + name + ", username=" + username + ", password=" + password + ", diagnostics=" + diagnostics + ", reliability=" + reliability + "]";
+        return "Researcher [name=" + name + ", username=" + username + ", password=" + password + ", reliability=" + reliability + "]";
     }
 
 }
