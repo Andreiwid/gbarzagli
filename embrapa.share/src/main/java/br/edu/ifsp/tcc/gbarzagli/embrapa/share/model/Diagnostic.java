@@ -27,8 +27,6 @@ public class Diagnostic extends PersistedObject {
     @JoinColumn(name = "fk_researcher", referencedColumnName = "id")
     private Researcher researcher;
     
-    public Diagnostic() {}
-
     public String getDescription() {
         return description;
     }

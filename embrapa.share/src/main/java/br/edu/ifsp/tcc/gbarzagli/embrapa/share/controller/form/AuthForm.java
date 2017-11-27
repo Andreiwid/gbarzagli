@@ -14,9 +14,6 @@ public class AuthForm {
     
     private String confirmation;
     
-    public AuthForm() {
-    }
-
     public String getName() {
         return name;
     }

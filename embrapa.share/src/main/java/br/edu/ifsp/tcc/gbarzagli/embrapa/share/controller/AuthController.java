@@ -20,7 +20,7 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.ResearcherRepository;
 public class AuthController {
 	
 	@Autowired
-	ResearcherRepository researcherRepository;
+	private ResearcherRepository researcherRepository;
 	
 	private static final String WRONG_CREDENTIALS_ERROR = "Your username or password is not correct.";
 	

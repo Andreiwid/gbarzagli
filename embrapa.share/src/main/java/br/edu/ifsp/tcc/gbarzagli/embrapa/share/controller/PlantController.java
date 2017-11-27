@@ -14,7 +14,7 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PlantRepository;
 public class PlantController {
 
     @Autowired
-    PlantRepository plantRepository;
+    private PlantRepository plantRepository;
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public void register(@RequestParam String name) {

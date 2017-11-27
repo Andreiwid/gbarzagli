@@ -30,7 +30,6 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.Constants;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Image;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Plant;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.model.Post;
-import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.ImageRepository;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PlantRepository;
 import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PostRepository;
 
@@ -44,13 +43,10 @@ import br.edu.ifsp.tcc.gbarzagli.embrapa.share.repository.PostRepository;
 public class PostRestController extends APIRestController {
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    PlantRepository plantRepository;
-
-    @Autowired
-    ImageRepository imageRepository;
+    private PlantRepository plantRepository;
 
     /**
      * POST endpoint to upload a image to our server
